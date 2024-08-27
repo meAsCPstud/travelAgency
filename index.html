@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Agregar Vuelos</title>
+    <title>Agregar Vuelos y Hoteles</title>
     <script>
         function validarVuelo() {
             const origen = document.getElementById("origen").value;
@@ -11,6 +11,18 @@
             const precio = document.getElementById("precio").value;
 
             if (!origen || !destino || !fecha || isNaN(precio) || precio <= 0) {
+                alert("Por favor, complete todos los campos correctamente.");
+                return false;
+            }
+            return true;
+        }
+
+        function validarHotel() {
+            const nombre = document.getElementById("nombre").value;
+            const direccion = document.getElementById("direccion").value;
+            const precioPorNoche = document.getElementById("precio_por_noche").value;
+
+            if (!nombre || !direccion || isNaN(precioPorNoche) || precioPorNoche <= 0) {
                 alert("Por favor, complete todos los campos correctamente.");
                 return false;
             }
@@ -32,21 +44,6 @@
         <button type="submit">Agregar Vuelo</button>
     </form>
 
-    <script>
-        function validarHotel() {
-            const nombre = document.getElementById("nombre").value;
-            const direccion = document.getElementById("direccion").value;
-            const precioPorNoche = document.getElementById("precio_por_noche").value;
-
-            if (!nombre || !direccion || isNaN(precioPorNoche) || precioPorNoche <= 0) {
-                alert("Por favor, complete todos los campos correctamente.");
-                return false;
-            }
-            return true;
-        }
-    </script>
-</head>
-<body>
     <h1>Agregar Hotel</h1>
     <form method="post" action="ins.php" onsubmit="return validarHotel()">
         <label for="nombre">Nombre:</label>
@@ -57,8 +54,5 @@
         <input type="number" id="precio_por_noche" name="precio_por_noche" step="0.01" required><br>
         <button type="submit">Agregar Hotel</button>
     </form>
-</body>
-</html>
-
 </body>
 </html>
